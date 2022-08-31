@@ -29,11 +29,11 @@ namespace TheRift.Structs
 
         public float LengthSquare => x * x + y * y;
         public float Length => MathF.Sqrt(x * x + y * y);
-        public MVec Normalize => this / Length;
+        public MVec Normalized => this / Length;
         public MVec Floor => new(MathF.Floor(x), MathF.Floor(y));
         public MVec Round => new(MathF.Round(x), MathF.Round(y));
         public MVec Celling => new(MathF.Ceiling(x), MathF.Ceiling(y));
-        public Angle Angle => new(MathF.Atan2(y, x));
+        public Angle Direction => new(MathF.Atan2(y, x));
         #endregion
 
 

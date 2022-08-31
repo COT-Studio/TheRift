@@ -1,11 +1,16 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 namespace TheRift
 {
     public class GameMain : Game
     {
+
+        #region components
+
+        public Input Input;
+
+        #endregion
+
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
@@ -19,6 +24,39 @@ namespace TheRift
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+
+            GameMain game = this;
+
+
+
+            #region init components
+
+            Input = new(game, new Keys[] {
+                Keys.A,
+                Keys.D,
+                Keys.W,
+                Keys.S,
+                Keys.L,
+                Keys.K,
+                Keys.I,
+                Keys.J,
+                Keys.Q,
+                Keys.E,
+                Keys.Enter,
+                Keys.Space
+            });
+
+            #endregion
+
+
+
+            #region add components
+
+            Components.Add(Input);
+
+            #endregion
+
+
 
             base.Initialize();
         }
