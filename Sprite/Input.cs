@@ -1,6 +1,6 @@
 ﻿
 
-namespace TheRift.Components
+namespace TheRift.Sprite
 {
     public enum KeyName
     {
