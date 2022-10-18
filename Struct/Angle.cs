@@ -50,6 +50,11 @@ namespace TheRift.Struct
             return obj is Angle angle && Degree == angle.Degree;
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Degree);
+        }
+
         #endregion
 
     }

@@ -1,6 +1,6 @@
 ﻿
 
-namespace TheRift.Sprite
+namespace TheRift.Components
 {
     public enum KeyName
     {
@@ -35,6 +35,10 @@ namespace TheRift.Sprite
 
         #region Constructor
 
+        /// <summary>
+        /// 输入检测组件
+        /// </summary>
+        /// <param name="keyCode">左右上下; ABXYLR; start, select</param>
         public Input(GameMain game, Keys[] keyCode) : base(game)
         {
             KeyCode = new(keyCode);
