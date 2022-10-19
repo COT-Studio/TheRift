@@ -1,12 +1,13 @@
-﻿
-namespace TheRift.Struct
+﻿namespace TheRift.Struct
 {
     public struct Vector
     {
-        public float X;
-        public float Y;
-        public float Z;
-        
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
+
+        public static explicit operator Vector2(Vector v) => new(v.X, v.Y);
+
         public Vector(float x = 0f, float y = 0f, float z = 0f)
         {
             X = x;

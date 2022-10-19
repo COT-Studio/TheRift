@@ -23,3 +23,4 @@ D:\TheRift\TheRift\obj\Debug\net6.0\refint\TheRift.dll
 D:\TheRift\TheRift\obj\Debug\net6.0\TheRift.pdb
 D:\TheRift\TheRift\obj\Debug\net6.0\TheRift.genruntimeconfig.cache
 D:\TheRift\TheRift\obj\Debug\net6.0\ref\TheRift.dll
+D:\TheRift\TheRift\bin\Debug\net6.0\Content\textures\player\stay\0-0.xnb

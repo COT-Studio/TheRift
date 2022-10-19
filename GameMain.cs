@@ -4,15 +4,22 @@ namespace TheRift
 {
     public class GameMain : Game
     {
+        public Vector2 WindowSize = new(800, 480);
+
 
         #region components
 
         public Input Input;
+        public Player Player;
 
         #endregion
 
+
+
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public SpriteBatch SpriteBatch;
+
+        public Camera Camera;
 
         public GameMain()
         {
@@ -23,15 +30,11 @@ namespace TheRift
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
-            GameMain game = this;
-
-
+            Camera = new(this, new(), new(1, 1), new());
 
             #region init components
 
-            Input = new(game, new Keys[] {
+            Input = new(this, new Keys[] {
                 Keys.A,
                 Keys.D,
                 Keys.W,
@@ -46,6 +49,8 @@ namespace TheRift
                 Keys.Space
             });
 
+            Player = new(this);
+
             #endregion
 
 
@@ -53,6 +58,7 @@ namespace TheRift
             #region add components
 
             Components.Add(Input);
+            Components.Add(Player);
 
             #endregion
 
@@ -63,16 +69,15 @@ namespace TheRift
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            Player.Textures = new();
+            Player.Textures.Add("stay", new Animation(this, "player/stay/", 1, ATMode.none, 1));
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed) Exit();
-
-            // TODO: Add your update logic here
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape)) Exit();
 
             base.Update(gameTime);
         }
@@ -81,9 +86,11 @@ namespace TheRift
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            SpriteBatch.Begin(sortMode: SpriteSortMode.BackToFront);
 
             base.Draw(gameTime);
+
+            SpriteBatch.End();
         }
     }
 }

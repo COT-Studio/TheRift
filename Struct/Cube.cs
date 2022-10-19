@@ -3,8 +3,8 @@
     public struct Cube
     {
 
-        public Vector Position;
-        public Vector Size;
+        public Vector Position { get; set; }
+        public Vector Size { get; set; }
 
         public Cube(Vector position, Vector size)
         {
@@ -17,9 +17,6 @@
         #region properties
 
         public float Volume => Size.X * Size.Y * Size.Z;
-
-        public float X { get => Position.X; set => Position.X = value; }
-        public float Y { get => Position.Y; set => Position.Y = value; }
 
         #endregion
 
