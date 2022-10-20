@@ -36,9 +36,9 @@
         public Vector Floor => new(MathF.Floor(X), MathF.Floor(Y), MathF.Floor(Z));
         public Vector Round => new(MathF.Round(X), MathF.Round(Y), MathF.Round(Z));
         public Vector Celling => new(MathF.Ceiling(X), MathF.Ceiling(Y), MathF.Ceiling(Z));
-        public Angle DirectionX => new(MathF.Atan2(Z, Y));
-        public Angle DirectionY => new(MathF.Atan2(X, Z));
-        public Angle DirectionZ => new(MathF.Atan2(Y, X));
+        public Angle DirectionX => new(MathF.Atan2(Z, Y), true);
+        public Angle DirectionY => new(MathF.Atan2(X, Z), true);
+        public Angle DirectionZ => new(MathF.Atan2(Y, X), true);
         #endregion
 
 

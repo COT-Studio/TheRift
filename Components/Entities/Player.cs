@@ -7,7 +7,6 @@
             Size = 80f;
             Speed = 5f;
 
-            Scale = new(1, 1, 1);
             Costume = "stay";
             game.Camera.Position = Position + new Vector(0, 0, 300);
         }
@@ -16,21 +15,29 @@
         {
             base.Update(gameTime);
 
+            var movement = new Vector();
+
             if (game.Input.KeyDown(KeyName.Down))
             {
-                Position += new Vector(0, 0, Speed);
+                movement += new Vector(0, 0, Speed);
             }
             if (game.Input.KeyDown(KeyName.Up))
             {
-                Position += new Vector(0, 0, -Speed);
+                movement += new Vector(0, 0, -Speed);
             }
             if (game.Input.KeyDown(KeyName.Right))
             {
-                Position += new Vector(Speed, 0, 0);
+                movement += new Vector(Speed, 0, 0);
             }
             if (game.Input.KeyDown(KeyName.Left))
             {
-                Position += new Vector(-Speed, 0, 0);
+                movement += new Vector(-Speed, 0, 0);
+            }
+
+            if (movement.LengthSquare > 0)
+            {
+                Position += movement;
+                DirectionY = movement.DirectionY;
             }
         }
     }

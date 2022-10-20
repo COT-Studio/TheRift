@@ -22,7 +22,7 @@
 
             for (int i = 0; i < frameCount; i++)
             {
-                frames[i] = new(game, mode, $"textures/{url}{i}-");
+                frames[i] = new(game, mode, $"textures/{url}", i);
             }
 
             Frames = frames;

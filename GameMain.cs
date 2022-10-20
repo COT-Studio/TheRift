@@ -30,7 +30,7 @@ namespace TheRift
 
         protected override void Initialize()
         {
-            Camera = new(this, new(), new(1, 1), new());
+            Camera = new(this, new(), new(1, 1), new(180));
 
             #region init components
 
@@ -71,8 +71,15 @@ namespace TheRift
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
+
+            #region load textures
+
             Player.Textures = new();
-            Player.Textures.Add("stay", new Animation(this, "player/stay/", 1, ATMode.none, 1));
+            Player.Textures.Add("stay", new Animation(this, "player/stay/", 4, ATMode.SideMirror4, 6));
+
+            #endregion
+
+
         }
 
         protected override void Update(GameTime gameTime)

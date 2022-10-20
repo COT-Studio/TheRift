@@ -10,13 +10,23 @@ namespace TheRift.Struct
         public static implicit operator Angle(float v) => new(v);
         public static implicit operator float(Angle v) => v.Degree;
 
-        public Angle(float degree = 0) => _size = degree;
+        public Angle(float size = 0, bool radian = false) => _size = radian ? size * 180 / MathF.PI : size;
 
 
 
         #region properties
 
-        public float Degree { get => (_size + 180) % 360 - 180; set => _size = (value + 180) % 360 - 180; }
+        /// <summary>
+        /// 角度制下角的大小
+        /// </summary>
+        public float Degree
+        {
+            get => _size > 0 ? (_size + 180) % 360 - 180 : (_size - 180) % 360 + 180;
+            set => _size = value > 0 ? (value + 180) % 360 - 180 : (value - 180) % 360 + 180;
+        }
+        /// <summary>
+        /// 弧度制下角的大小
+        /// </summary>
         public float Radian { get => Degree * MathF.PI / 180; set => Degree = value * 180 / MathF.PI; }
 
         public Angle Abs => new(MathF.Abs(Degree));
@@ -41,7 +51,7 @@ namespace TheRift.Struct
 
         #region methods
 
-        public Angle Round(int division = 4) => new(MathF.Round(Degree / division) * division);
+        public Angle Round(int division = 4) => new(MathF.Round(Degree / (360 / division)) * (360 / division));
 
 
 
