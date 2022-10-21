@@ -111,6 +111,14 @@
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            //绘制地面
+            SpriteBatch.Begin(transformMatrix: groundMatrix);
+
+            SpriteBatch
+
+            SpriteBatch.End();
+
+            //绘制实体
             SpriteBatch.Begin(sortMode: SpriteSortMode.BackToFront);
 
             base.Draw(gameTime);
@@ -118,6 +126,7 @@
             SpriteBatch.DrawString(testFont, $"Player p: {Player.Position.X},{Player.Position.Y},{Player.Position.Z}\n", new(0, 0), Color.Black);
 
             SpriteBatch.End();
+
         }
     }
 }
