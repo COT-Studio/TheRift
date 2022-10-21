@@ -157,3 +157,22 @@
 /processorParam:TextureFormat=Color
 /build:../assests/textures/player/stay/2-3.png;textures/player/stay/2-3.png
 
+#begin ../assests/textures/testEntity/stay/0-0.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../assests/textures/testEntity/stay/0-0.png;textures/testEntity/stay/0-0.png
+
+#begin File.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:File.spritefont;testFont.spritefont
+

@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework.Graphics;
-
-namespace TheRift
+﻿namespace TheRift
 {
     public class GameMain : Game
     {
@@ -12,12 +10,16 @@ namespace TheRift
         public Input Input;
         public Player Player;
 
+        public EntityList<TestEntity> TestEntities;
+
         #endregion
 
 
 
         private GraphicsDeviceManager _graphics;
         public SpriteBatch SpriteBatch;
+
+        public SpriteFont testFont;
 
         public Camera Camera;
 
@@ -30,7 +32,16 @@ namespace TheRift
 
         protected override void Initialize()
         {
-            Camera = new(this, new(), new(1, 1), new(180));
+            Camera = new(this, new(0, 0, 0), new(1, 1));
+
+            #region init EntityTextures
+
+            Entity.EntityTextures.Add("player", new Dictionary<string, Animation>());
+            Entity.EntityTextures.Add("testEntity", new Dictionary<string, Animation>());
+
+            #endregion
+
+
 
             #region init components
 
@@ -50,6 +61,7 @@ namespace TheRift
             });
 
             Player = new(this);
+            TestEntities = new(this);
 
             #endregion
 
@@ -59,6 +71,11 @@ namespace TheRift
 
             Components.Add(Input);
             Components.Add(Player);
+            for (int i = 0; i < 100; i++)
+            {
+                Random random = new();
+                TestEntities.Add(new(this, new(random.Next(-2000, 2000), 0, random.Next(-2000, 2000))));
+            }
 
             #endregion
 
@@ -70,12 +87,13 @@ namespace TheRift
         protected override void LoadContent()
         {
             SpriteBatch = new SpriteBatch(GraphicsDevice);
-
+            testFont = Content.Load<SpriteFont>("testFont");
 
             #region load textures
 
-            Player.Textures = new();
-            Player.Textures.Add("stay", new Animation(this, "player/stay/", 4, ATMode.SideMirror4, 6));
+            Entity.EntityTextures["player"].Add("stay", new(this, "player/stay/", 4, ATMode.SideMirror4, 6));
+
+            Entity.EntityTextures["testEntity"].Add("stay", new Animation(this, "testEntity/stay/", 1, ATMode.None, 1));
 
             #endregion
 
@@ -96,6 +114,8 @@ namespace TheRift
             SpriteBatch.Begin(sortMode: SpriteSortMode.BackToFront);
 
             base.Draw(gameTime);
+
+            SpriteBatch.DrawString(testFont, $"Player p: {Player.Position.X},{Player.Position.Y},{Player.Position.Z}\n", new(0, 0), Color.Black);
 
             SpriteBatch.End();
         }

@@ -35,3 +35,5 @@ D:\TheRift\TheRift\bin\Debug\net6.0\Content\textures\player\stay\2-0.xnb
 D:\TheRift\TheRift\bin\Debug\net6.0\Content\textures\player\stay\2-1.xnb
 D:\TheRift\TheRift\bin\Debug\net6.0\Content\textures\player\stay\2-2.xnb
 D:\TheRift\TheRift\bin\Debug\net6.0\Content\textures\player\stay\2-3.xnb
+D:\TheRift\TheRift\bin\Debug\net6.0\Content\textures\testEntity\stay\0-0.xnb
+D:\TheRift\TheRift\bin\Debug\net6.0\Content\testFont.xnb

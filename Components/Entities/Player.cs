@@ -7,9 +7,12 @@
             Size = 80f;
             Speed = 5f;
 
+            Textures = EntityTextures["player"];
+
             Costume = "stay";
-            game.Camera.Position = Position + new Vector(0, 0, 300);
         }
+
+
 
         public override void Update(GameTime gameTime)
         {
@@ -19,11 +22,11 @@
 
             if (game.Input.KeyDown(KeyName.Down))
             {
-                movement += new Vector(0, 0, Speed);
+                movement += new Vector(0, 0, -Speed);
             }
             if (game.Input.KeyDown(KeyName.Up))
             {
-                movement += new Vector(0, 0, -Speed);
+                movement += new Vector(0, 0, Speed);
             }
             if (game.Input.KeyDown(KeyName.Right))
             {
@@ -39,6 +42,8 @@
                 Position += movement;
                 DirectionY = movement.DirectionY;
             }
+
+            game.Camera.Position += (Position + new Vector(0, 50, -400) - game.Camera.Position) / 10;
         }
     }
 }

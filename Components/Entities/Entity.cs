@@ -1,8 +1,13 @@
 ﻿namespace TheRift.Components.Entities
 {
-    public class Entity : DrawableGameComponent
+    public abstract class Entity : DrawableGameComponent
     {
         protected GameMain game;
+
+        /// <summary>
+        /// 存储所有实体所用到的贴图
+        /// </summary>
+        public static readonly Dictionary<string, Dictionary<string, Animation>> EntityTextures = new();
 
 
 
@@ -11,8 +16,8 @@
         /// <summary>
         /// 半径
         /// </summary>
-        public static float Size;
-        public static float Speed;
+        public float Size;
+        public float Speed;
 
         public Vector Position { get; set; }
         public Angle DirectionY { get; set; }
@@ -23,7 +28,10 @@
 
         #region display
 
-        public static Dictionary<string, Animation> Textures;
+        /// <summary>
+        /// 存储当前实体所用到的贴图
+        /// </summary>
+        protected Dictionary<string, Animation> Textures { get; set; }
 
         public Vector Offset { get; set; }
         public Vector Scale { get; set; }
@@ -58,7 +66,7 @@
 
         public Transform Transform => new(Position + Offset, Scale);
 
-        public Animation currentAnimation => Textures[Costume];
+        public Animation CurrentAnimation => Textures[Costume];
 
         #endregion
 
@@ -70,12 +78,12 @@
         {
             base.Draw(gameTime);
 
-            var distance = game.Camera.Position.Z - Position.Z;
+            var distance = Position.Z - game.Camera.Position.Z;
 
-            if (3 < distance && distance < 5000)
+            if (0 < distance && distance < game.Camera.FOV)
             {
                 var (position, scale) = game.Camera.Transform(Transform);
-                var (texture, flip) = currentAnimation.CurrentFrame[game.Camera.DirectionY + 180 - DirectionY];
+                var (texture, flip) = CurrentAnimation.CurrentFrame[180+DirectionY];
 
                 game.SpriteBatch.Draw
                 (
@@ -87,13 +95,15 @@
                     new Vector2(texture.Width, texture.Height) / 2,
                     scale,
                     flip,
-                    1f
+                    distance / game.Camera.FOV
                 );
 
-                currentAnimation.Update();
+                CurrentAnimation.Update();
+
             }
         }
-
-        #endregion
     }
+
+    #endregion
 }
+

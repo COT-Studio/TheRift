@@ -11,3 +11,5 @@ Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Siz
 "D:/TheRift/TheRift/Content/../assests/textures/player/stay/2-1.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/player/stay/2-1.xnb","TextureProcessor","Texture2DContent",1512,96085,0.0043213
 "D:/TheRift/TheRift/Content/../assests/textures/player/stay/2-2.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/player/stay/2-2.xnb","TextureProcessor","Texture2DContent",1469,96085,0.0031319
 "D:/TheRift/TheRift/Content/../assests/textures/player/stay/2-3.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/player/stay/2-3.xnb","TextureProcessor","Texture2DContent",1512,96085,0.0026226
+"D:/TheRift/TheRift/Content/../assests/textures/testEntity/stay/0-0.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/testEntity/stay/0-0.xnb","TextureProcessor","Texture2DContent",1617,96085,0.2683528
+"D:/TheRift/TheRift/Content/File.spritefont","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/testFont.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21535,0.2162931
