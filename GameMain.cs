@@ -23,6 +23,8 @@
 
         public Camera Camera;
 
+        public Ground Ground;
+
         public GameMain()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -81,6 +83,21 @@
 
 
 
+            #region init Ground
+
+            Ground = new(this);
+
+            Ground.SetMapByString(5, 5, "+",
+                "+++++" +
+                "+++++" +
+                "+++++" +
+                "+++++" +
+                "+++++");
+
+            #endregion
+
+
+
             base.Initialize();
         }
 
@@ -91,9 +108,28 @@
 
             #region load textures
 
+
+
+            #region entity
+
             Entity.EntityTextures["player"].Add("stay", new(this, "player/stay/", 4, ATMode.SideMirror4, 6));
 
             Entity.EntityTextures["testEntity"].Add("stay", new Animation(this, "testEntity/stay/", 1, ATMode.None, 1));
+
+            #endregion
+
+
+
+            #region ground
+
+            Ground.Textures = new Texture2D[]
+            {
+                Content.Load<Texture2D>("textures/ground/test")
+            };
+
+            #endregion
+
+
 
             #endregion
 
@@ -112,9 +148,10 @@
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //绘制地面
-            SpriteBatch.Begin(transformMatrix: groundMatrix);
+            SpriteBatch.Begin(transformMatrix: Ground.TransformMatrix);
+            //SpriteBatch.Begin();
 
-            SpriteBatch
+            Ground.Draw();
 
             SpriteBatch.End();
 
