@@ -7,7 +7,7 @@ namespace TheRift.Components
         private GameMain game;
 
         //求一个懂矩阵的大佬帮我写一个能让图像绕x轴旋转90°再向下平移以绘制地面的矩阵！！！
-        public readonly Matrix TransformMatrix = Matrix.CreateRotationX(0.01f);
+        public readonly Matrix TransformMatrix = Matrix.Identity;
         /*public Matrix TransformMatrix =
             new(
                 1f, 0f, 0f, 0f,
