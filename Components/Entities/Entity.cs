@@ -1,5 +1,12 @@
 ﻿namespace TheRift.Components.Entities
 {
+    public enum EntityEvents
+    {
+        Interact,
+        Attack,
+        Give
+    }
+
     public abstract class Entity : DrawableGameComponent
     {
         protected GameMain game;
@@ -46,6 +53,10 @@
 
 
 
+        public Inventory Inventory = new();
+
+
+
         public Entity(GameMain game) : base(game)
         {
             this.game = game;
@@ -62,11 +73,17 @@
             Speed = 0f;
         }
 
+
+
         #region properties
 
         public Transform Transform => new(Position + Offset, Scale);
 
         public Animation CurrentAnimation => Textures[Costume];
+
+        public Item HeadSlotItem => Inventory.HeadSlot;
+        public Item BodySlotItem => Inventory.BodySlot;
+        public Item HandSlotItem => Inventory.HandSlot;
 
         #endregion
 
@@ -83,7 +100,7 @@
             if (0 < distance && distance < game.Camera.FOV)
             {
                 var (position, scale) = game.Camera.Transform(Transform);
-                var (texture, flip) = CurrentAnimation.CurrentFrame[180+DirectionY];
+                var (texture, flip) = CurrentAnimation.CurrentFrame[180 + DirectionY];
 
                 game.SpriteBatch.Draw
                 (
@@ -102,8 +119,13 @@
 
             }
         }
+
+        public virtual void Event(Entity subject, EntityEvents action)
+        {
+
+        }
+
+        #endregion
+
     }
-
-    #endregion
 }
-
