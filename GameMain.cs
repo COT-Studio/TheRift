@@ -10,7 +10,7 @@
         public Input Input;
         public Player Player;
 
-        public EntityList<TestEntity> TestEntities;
+        public EntityList<Entity> Entities;
 
         #endregion
 
@@ -24,6 +24,10 @@
         public Camera Camera;
 
         public Ground Ground;
+
+        private readonly List<string> logs = new();
+
+        public void Print(string log) => logs.Add(log);
 
         public GameMain()
         {
@@ -63,7 +67,7 @@
             });
 
             Player = new(this);
-            TestEntities = new(this);
+            Entities = new(this);
 
             #endregion
 
@@ -76,7 +80,7 @@
             for (int i = 0; i < 100; i++)
             {
                 Random random = new();
-                TestEntities.Add(new(this, new(random.Next(-2000, 2000), 0, random.Next(-2000, 2000))));
+                Entities.Add(new(this, new(random.Next(-2000, 2000), 0, random.Next(-2000, 2000))));
             }
 
             #endregion
@@ -160,7 +164,7 @@
 
             base.Draw(gameTime);
 
-            SpriteBatch.DrawString(testFont, $"Player p: {Player.Position.X},{Player.Position.Y},{Player.Position.Z}\n", new(0, 0), Color.Black);
+            SpriteBatch.DrawString(testFont, string.Join('\n', logs.ToArray()[^4..^1]), new(0, 0), Color.Black);
 
             SpriteBatch.End();
 
