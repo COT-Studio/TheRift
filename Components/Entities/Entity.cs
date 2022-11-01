@@ -23,8 +23,9 @@
         /// <summary>
         /// 半径
         /// </summary>
-        public float Size;
-        public float Speed;
+        public float Size { get; init; }
+        public float Speed { get; init; }
+        public float Range { get; init; }
 
         public Vector Position { get; set; }
         public Angle DirectionY { get; set; }
@@ -53,7 +54,13 @@
 
 
 
-        public Inventory Inventory = new();
+        #region game logic
+
+        public Behavior Behavior { get; protected set; }
+
+        public Inventory Inventory { get; protected set; }
+
+        #endregion
 
 
 
@@ -71,6 +78,11 @@
             DirectionY = new(0);
             Size = 0f;
             Speed = 0f;
+
+            //初始化游戏逻辑变量
+            Behavior = "init";
+            Inventory = new();
+
         }
 
 
@@ -90,6 +102,12 @@
 
 
         #region methods
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            Behavior.Do();
+        }
 
         public override void Draw(GameTime gameTime)
         {
@@ -124,6 +142,8 @@
         {
 
         }
+
+        public virtual bool CheckEvent(Entity subject, EntityEvents action) => true;
 
         #endregion
 

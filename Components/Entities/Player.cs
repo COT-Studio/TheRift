@@ -6,18 +6,20 @@
         {
             Size = 80f;
             Speed = 5f;
+            Range = 80f;
 
             Textures = EntityTextures["player"];
-
             Costume = "stay";
+
+            Behavior = new Behavior(PlayerMovement);
         }
 
 
 
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
+        #region methods
 
+        internal void PlayerMovement()
+        {
             var movement = new Vector();
 
             if (game.Input.KeyDown(KeyName.Down))
@@ -45,5 +47,8 @@
 
             game.Camera.Position += (Position + new Vector(0, 50, -400) - game.Camera.Position) / 10;
         }
+
+        #endregion
+
     }
 }

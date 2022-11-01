@@ -6,6 +6,7 @@ global using TheRift.Struct;
 global using TheRift.Components;
 global using TheRift.Components.Entities;
 global using TheRift.Components.items;
+global using TheRift.Components.Entities.Behaviors;
 global using TheRift.Draw;
 
 global using Microsoft.Xna.Framework;
