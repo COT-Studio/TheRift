@@ -11,42 +11,42 @@
             Textures = EntityTextures["player"];
             Costume = "stay";
 
-            Behavior = new Behavior(PlayerMovement);
+            Behavior = delegate ()
+            {
+                var movement = new Vector();
+
+                if (game.Input.KeyDown(KeyName.Down))
+                {
+                    movement += new Vector(0, 0, -Speed);
+                }
+                if (game.Input.KeyDown(KeyName.Up))
+                {
+                    movement += new Vector(0, 0, Speed);
+                }
+                if (game.Input.KeyDown(KeyName.Right))
+                {
+                    movement += new Vector(Speed, 0, 0);
+                }
+                if (game.Input.KeyDown(KeyName.Left))
+                {
+                    movement += new Vector(-Speed, 0, 0);
+                }
+
+                if (movement.LengthSquare > 0)
+                {
+                    Position += movement;
+                    DirectionY = movement.DirectionY;
+                }
+
+                game.Camera.Position += (Position + new Vector(0, 50, -400) - game.Camera.Position) / 10;
+            };
         }
 
 
 
         #region methods
 
-        internal void PlayerMovement()
-        {
-            var movement = new Vector();
 
-            if (game.Input.KeyDown(KeyName.Down))
-            {
-                movement += new Vector(0, 0, -Speed);
-            }
-            if (game.Input.KeyDown(KeyName.Up))
-            {
-                movement += new Vector(0, 0, Speed);
-            }
-            if (game.Input.KeyDown(KeyName.Right))
-            {
-                movement += new Vector(Speed, 0, 0);
-            }
-            if (game.Input.KeyDown(KeyName.Left))
-            {
-                movement += new Vector(-Speed, 0, 0);
-            }
-
-            if (movement.LengthSquare > 0)
-            {
-                Position += movement;
-                DirectionY = movement.DirectionY;
-            }
-
-            game.Camera.Position += (Position + new Vector(0, 50, -400) - game.Camera.Position) / 10;
-        }
 
         #endregion
 

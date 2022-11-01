@@ -56,9 +56,20 @@
 
         #region game logic
 
-        public Behavior Behavior { get; protected set; }
+        public Action Behavior { get; protected set; }
 
         public Inventory Inventory { get; protected set; }
+
+        protected Vector MoveTarget { get; set; }
+
+        #endregion
+
+
+
+        #region behaviors
+
+        protected Action AStay;
+        protected Action AMoveTo;
 
         #endregion
 
@@ -80,9 +91,25 @@
             Speed = 0f;
 
             //初始化游戏逻辑变量
-            Behavior = "init";
+            Behavior = AStay;
             Inventory = new();
 
+            //初始化默认行为
+            AStay = delegate ()
+            {
+
+            };
+            AMoveTo = delegate ()
+            {
+                if ((MoveTarget - Position).Length <= Speed)
+                {
+                    Position = MoveTarget;
+                }
+                else
+                {
+                    Position += (MoveTarget - Position).Normalized * Speed;
+                }
+            };
         }
 
 
@@ -106,7 +133,7 @@
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            Behavior.Do();
+            Behavior();
         }
 
         public override void Draw(GameTime gameTime)
@@ -144,6 +171,28 @@
         }
 
         public virtual bool CheckEvent(Entity subject, EntityEvents action) => true;
+
+
+
+        public static float Distance(Entity e1, Entity e2) => (e1.Position - e2.Position).Length - e1.Size - e2.Size;
+
+
+
+        #region behavior
+
+        protected void Stay()
+        {
+            Behavior = AStay;
+        }
+        protected void MoveTo(Vector target)
+        {
+            MoveTarget = target;
+            Behavior = AMoveTo;
+        }
+
+        #endregion
+
+
 
         #endregion
 
