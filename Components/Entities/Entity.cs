@@ -56,11 +56,15 @@
 
         #region game logic
 
-        public Action Behavior { get; protected set; }
-
         public Inventory Inventory { get; protected set; }
 
+
+        public Action Behavior { get; protected set; }
+
+
         protected Vector MoveTarget { get; set; }
+        protected Vector FocusPosition { get; set; }
+        protected Vector TrackOffset { get; set; }
 
         #endregion
 
@@ -68,8 +72,22 @@
 
         #region behaviors
 
-        protected Action AStay;
-        protected Action AMoveTo;
+        /// <summary>
+        /// 空的行为
+        /// </summary>
+        protected Action Stay;
+        /// <summary>
+        /// 逐渐移到MoveTarget，每帧移动距离为Speed
+        /// </summary>
+        protected Action MoveTo;
+        /// <summary>
+        /// 使摄像机逐渐移到FocusPosition
+        /// </summary>
+        protected Action FocusTo;
+        /// <summary>
+        /// 使摄像机跟随此实体，且位置相对于此实体有TrackOffset的偏移
+        /// </summary>
+        protected Action Track;
 
         #endregion
 
@@ -91,15 +109,15 @@
             Speed = 0f;
 
             //初始化游戏逻辑变量
-            Behavior = AStay;
+            Behavior = Stay;
             Inventory = new();
 
             //初始化默认行为
-            AStay = delegate ()
+            Stay = delegate ()
             {
 
             };
-            AMoveTo = delegate ()
+            MoveTo = delegate ()
             {
                 if ((MoveTarget - Position).Length <= Speed)
                 {
@@ -109,6 +127,15 @@
                 {
                     Position += (MoveTarget - Position).Normalized * Speed;
                 }
+            };
+            FocusTo = delegate ()
+            {
+                game.Camera.Position += (FocusPosition - game.Camera.Position) / 10;
+            };
+            Track = delegate ()
+            {
+                FocusPosition = Position + TrackOffset;
+                FocusTo();
             };
         }
 
@@ -175,24 +202,6 @@
 
 
         public static float Distance(Entity e1, Entity e2) => (e1.Position - e2.Position).Length - e1.Size - e2.Size;
-
-
-
-        #region behavior
-
-        protected void Stay()
-        {
-            Behavior = AStay;
-        }
-        protected void MoveTo(Vector target)
-        {
-            MoveTarget = target;
-            Behavior = AMoveTo;
-        }
-
-        #endregion
-
-
 
         #endregion
 

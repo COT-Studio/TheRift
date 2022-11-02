@@ -9,6 +9,8 @@
             Textures = EntityTextures["testEntity"];
 
             Costume = "stay";
+
+            Behavior = Stay;
         }
     }
 }

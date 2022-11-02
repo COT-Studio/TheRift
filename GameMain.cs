@@ -80,7 +80,7 @@
             for (int i = 0; i < 100; i++)
             {
                 Random random = new();
-                Entities.Add(new(this, new(random.Next(-2000, 2000), 0, random.Next(-2000, 2000))));
+                Entities.Add(new TestEntity(this, new(random.Next(-2000, 2000), 0, random.Next(-2000, 2000))));
             }
 
             #endregion
@@ -152,19 +152,19 @@
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             //绘制地面
-            SpriteBatch.Begin(transformMatrix: Ground.TransformMatrix);
+            //SpriteBatch.Begin(transformMatrix: Ground.TransformMatrix);
             //SpriteBatch.Begin();
 
-            Ground.Draw();
+            //Ground.Draw();
 
-            SpriteBatch.End();
+            //SpriteBatch.End();
 
             //绘制实体
             SpriteBatch.Begin(sortMode: SpriteSortMode.BackToFront);
 
             base.Draw(gameTime);
 
-            SpriteBatch.DrawString(testFont, string.Join('\n', logs.ToArray()[^4..^1]), new(0, 0), Color.Black);
+            SpriteBatch.DrawString(testFont, string.Join('\n', logs.ToArray()), new(0, 0), Color.Black);
 
             SpriteBatch.End();
 

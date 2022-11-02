@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/TheRift/TheRift/Content/../assests/textures/ground/test.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/ground/test.xnb","TextureProcessor","Texture2DContent",1453,160085,0.5436436
+"D:/TheRift/TheRift/Content/../assests/textures/ground/test.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/ground/test.xnb","TextureProcessor","Texture2DContent",1453,160085,0.3015231
 "D:/TheRift/TheRift/Content/../assests/textures/player/stay/0-0.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/player/stay/0-0.xnb","TextureProcessor","Texture2DContent",1790,96085,0.2567638
 "D:/TheRift/TheRift/Content/../assests/textures/player/stay/0-1.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/player/stay/0-1.xnb","TextureProcessor","Texture2DContent",1764,96085,0.002912
 "D:/TheRift/TheRift/Content/../assests/textures/player/stay/0-2.png","D:/TheRift/TheRift/Content/bin/DesktopGL/Content/textures/player/stay/0-2.xnb","TextureProcessor","Texture2DContent",1721,96085,0.0056635
